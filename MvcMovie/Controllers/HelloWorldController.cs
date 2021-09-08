@@ -1,18 +1,26 @@
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace MvcMovie.Controllers
 {
-    public class HelloWordlController : Controller
+    public class HelloWorldController : Controller
     {
 
-        public string Index()
+        public IActionResult Index()
         {
-            return "This is my default action...";
+            return View();
         }
 
-        public string Welcome()
+        public IActionResult Welcome(string name, int numTimes = 1)
         {
-            return "This is the Welcome action methos...";
+            //return "This is the Welcome action methos...";
+            //return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+
+            ViewData["Message"] = "Hello " + name;
+            ViewData["NumTimes"] = numTimes;
+
+            return View();
         }
     }
 }
